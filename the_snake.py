@@ -61,7 +61,6 @@ class Apple(GameObject):
 
     def __init__(self):
         """Инициализация яблока с случайной позицией и цветом."""
-
         position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
@@ -80,9 +79,7 @@ class Snake(GameObject):
     """Класс для объекта змейки."""
 
     def __init__(self):
-        """
-        Инициализация змейки с начальной позицией, направлением и цветом.
-        """
+        """Инициализация змейки с начальной позицией, направлением и цветом."""
         self.positions = [
             (100, 100),
             (80, 100),
@@ -94,9 +91,7 @@ class Snake(GameObject):
         super().__init__(self.positions[0], SNAKE_COLOR, SNAKE_COLOR)
 
     def update_direction(self):
-        """
-        Обновление направления змейки на основе следующего направления.
-        """
+        """Обновление направления змейки на основе следующего направления."""
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
@@ -159,9 +154,7 @@ class Snake(GameObject):
         return self.positions[0]
 
     def reset(self):
-        """
-        Сброс змейки к её начальному состоянию.
-        """
+        """Сброс змейки к её начальному состоянию."""
         self.__init__()
 
 
@@ -188,14 +181,11 @@ def handle_keys(snake):
 
 
 def main():
-    """
-    Основной игровой цикл.
-    """
+    """Основной игровой цикл."""
     pygame.display.set_caption('Змейка')
 
     snake = Snake()
     apple = Apple()
-
     while True:
         handle_keys(snake)
         snake.update_direction()
