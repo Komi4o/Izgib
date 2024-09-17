@@ -1,7 +1,6 @@
 import pygame
 from random import randint
 
-
 # Константы для размеров поля и сетки
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 GRID_SIZE = 20
@@ -30,6 +29,9 @@ clock = pygame.time.Clock()
 
 
 class GameObject:
+    """
+    Базовый класс для объектов игры.
+    """
 
     def __init__(self, position=(0, 0), color=(0, 0, 0), body_color=(0, 0, 0)):
         """
@@ -57,6 +59,10 @@ class GameObject:
 
 
 class Apple(GameObject):
+    """
+    Класс для объекта яблока.
+    """
+
     def __init__(self):
         """
         Инициализация яблока с случайной позицией и цветом.
@@ -74,13 +80,15 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
+    """
+    Класс для объекта змейки.
+    """
 
     def __init__(self):
         """
         Инициализация змейки с начальной позицией, направлением и цветом.
         """
-        self.positions = [(100, 100), (80, 100), (60, 100)
-                          ]  # Начальная позиция змейки
+        self.positions = [(100, 100), (80, 100), (60, 100)]  # Начальная позиция змейки
         self.direction = RIGHT  # Начальное направление
         self.next_direction = None  # Следующее направление
         self.last = None  # Последний сегмент для увеличения змейки
@@ -109,13 +117,13 @@ class Snake(GameObject):
         """
         Увеличение змейки за счет добавления сегмента к её хвосту.
         """
-        tail = self.positions[-1]
         self.positions.append(self.last)
         self.last = None
 
     def wrap_around(self):
         """
-        Обеспечение того, чтобы змейка появлялась с противоположной стороны экрана, если выходит за его пределы.
+        Обеспечение того, чтобы змейка появлялась с противоположной стороны экрана,
+        если выходит за его пределы.
         """
         head_x, head_y = self.positions[0]
         if head_x < 0:
