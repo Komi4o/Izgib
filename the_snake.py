@@ -67,16 +67,20 @@ class Apple(GameObject):
         """
         Инициализация яблока с случайной позицией и цветом.
         """
-        position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                    randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+        position = (
+            randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+            randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+        )
         super().__init__(position, APPLE_COLOR, APPLE_COLOR)
 
     def randomize_position(self):
         """
         Изменение позиции яблока на случайную.
         """
-        self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                         randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+        self.position = (
+            randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+            randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+        )
 
 
 class Snake(GameObject):
@@ -88,7 +92,11 @@ class Snake(GameObject):
         """
         Инициализация змейки с начальной позицией, направлением и цветом.
         """
-        self.positions = [(100, 100), (80, 100), (60, 100)]  # Начальная позиция змейки
+        self.positions = [
+            (100, 100),
+            (80, 100),
+            (60, 100)
+        ]  # Начальная позиция змейки
         self.direction = RIGHT  # Начальное направление
         self.next_direction = None  # Следующее направление
         self.last = None  # Последний сегмент для увеличения змейки
@@ -107,8 +115,10 @@ class Snake(GameObject):
         Перемещение змейки в текущем направлении.
         """
         head_x, head_y = self.positions[0]
-        new_head = (head_x + self.direction[0] * GRID_SIZE,
-                    head_y + self.direction[1] * GRID_SIZE)
+        new_head = (
+            head_x + self.direction[0] * GRID_SIZE,
+            head_y + self.direction[1] * GRID_SIZE
+        )
         self.positions = [new_head] + self.positions[:-1]
         self.last = self.positions[-1]
         self.wrap_around()
@@ -122,7 +132,8 @@ class Snake(GameObject):
 
     def wrap_around(self):
         """
-        Обеспечение того, чтобы змейка появлялась с противоположной стороны экрана,
+        Обеспечение того, чтобы змейка появлялась
+        с противоположной стороны экрана,
         если выходит за его пределы.
         """
         head_x, head_y = self.positions[0]
