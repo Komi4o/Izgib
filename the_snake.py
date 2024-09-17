@@ -27,7 +27,9 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
+
 class GameObject:
+
     def __init__(self, position=(0, 0), color=(0, 0, 0), body_color=(0, 0, 0)):
         """
         Инициализация объекта игры с позицией, цветом и цветом тела.
@@ -52,6 +54,7 @@ class GameObject:
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
+
 class Apple(GameObject):
     def __init__(self):
         """
@@ -68,12 +71,15 @@ class Apple(GameObject):
         self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
 
+
 class Snake(GameObject):
+
     def __init__(self):
         """
         Инициализация змейки с начальной позицией, направлением и цветом.
         """
-        self.positions = [(100, 100), (80, 100), (60, 100)]  # Начальная позиция змейки
+        self.positions = [(100, 100), (80, 100), (60, 100)
+                          ]  # Начальная позиция змейки
         self.direction = RIGHT  # Начальное направление
         self.next_direction = None  # Следующее направление
         self.last = None  # Последний сегмент для увеличения змейки
@@ -151,6 +157,7 @@ class Snake(GameObject):
         """
         self.__init__()
 
+
 def handle_keys(snake):
     """
     Обработка пользовательского ввода для управления змейкой.
@@ -171,6 +178,7 @@ def handle_keys(snake):
                 snake.next_direction = LEFT
             elif event.key == pygame.K_RIGHT and snake.direction != LEFT:
                 snake.next_direction = RIGHT
+
 
 def main():
     """
@@ -196,6 +204,7 @@ def main():
 
         pygame.display.update()
         clock.tick(SPEED)
+
 
 if __name__ == '__main__':
     main()
