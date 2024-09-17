@@ -29,9 +29,7 @@ clock = pygame.time.Clock()
 
 
 class GameObject:
-    """
-    Базовый класс для объектов игры.
-    """
+    """Базовый класс для объектов игры."""
 
     def __init__(self, position=(0, 0), color=(0, 0, 0), body_color=(0, 0, 0)):
         """
@@ -59,14 +57,11 @@ class GameObject:
 
 
 class Apple(GameObject):
-    """
-    Класс для объекта яблока.
-    """
+    """Класс для объекта яблока."""
 
     def __init__(self):
-        """
-        Инициализация яблока с случайной позицией и цветом.
-        """
+        """Инициализация яблока с случайной позицией и цветом."""
+
         position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
@@ -74,9 +69,7 @@ class Apple(GameObject):
         super().__init__(position, APPLE_COLOR, APPLE_COLOR)
 
     def randomize_position(self):
-        """
-        Изменение позиции яблока на случайную.
-        """
+        """Изменение позиции яблока на случайную."""
         self.position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
@@ -84,9 +77,7 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
-    """
-    Класс для объекта змейки.
-    """
+    """Класс для объекта змейки."""
 
     def __init__(self):
         """
@@ -111,9 +102,7 @@ class Snake(GameObject):
             self.next_direction = None
 
     def move(self):
-        """
-        Перемещение змейки в текущем направлении.
-        """
+        """Перемещение змейки в текущем направлении."""
         head_x, head_y = self.positions[0]
         new_head = (
             head_x + self.direction[0] * GRID_SIZE,
@@ -124,9 +113,7 @@ class Snake(GameObject):
         self.wrap_around()
 
     def grow(self):
-        """
-        Увеличение змейки за счет добавления сегмента к её хвосту.
-        """
+        """Увеличение змейки за счет добавления сегмента к её хвосту."""
         self.positions.append(self.last)
         self.last = None
 
