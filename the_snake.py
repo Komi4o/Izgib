@@ -64,8 +64,7 @@ class Apple(GameObject):
                          body_color=APPLE_COLOR)
         if snake_positions is not None:
             self.randomize_position(snake_positions)
-        """Изменение позиции яблока на случайную,
-        гарантируя, что она свободна."""
+        """Изменение позиции яблока."""
     def randomize_position(self, snake_positions):
         while True:
             position = (
