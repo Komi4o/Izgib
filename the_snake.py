@@ -51,6 +51,7 @@ class GameObject:
         pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def draw(self, screen):
+        """Отображение яблока на экране."""
         raise NotImplementedError
 
 
@@ -63,7 +64,8 @@ class Apple(GameObject):
                          body_color=APPLE_COLOR)
         if snake_positions is not None:
             self.randomize_position(snake_positions)
-
+        """Изменение позиции яблока на случайную,
+        гарантируя, что она свободна."""
     def randomize_position(self, snake_positions):
         while True:
             position = (
