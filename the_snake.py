@@ -51,7 +51,7 @@ class GameObject:
         pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def draw(self, screen):
-        raise NotImplementedError
+        raise NotImplementedError("Метод draw() должен быть переопределен в дочернем классе.")
 
 
 class Apple(GameObject):
@@ -59,14 +59,12 @@ class Apple(GameObject):
 
     def __init__(self, snake_positions=None):
         """Инициализация яблока с случайной позицией и цветом."""
-        super().__init__(position=(0, 0), color=APPLE_COLOR,
-                         body_color=APPLE_COLOR)
+        super().__init__(position=(0, 0), color=APPLE_COLOR, body_color=APPLE_COLOR)  # Вызываем конструктор родителя
         if snake_positions is not None:
             self.randomize_position(snake_positions)
 
     def randomize_position(self, snake_positions):
-        """Изменение позиции яблока на случайную,
-         гарантируя, что она свободна."""
+        """Изменение позиции яблока на случайную, гарантируя, что она свободна."""
         while True:
             position = (
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
@@ -91,8 +89,7 @@ class Snake(GameObject):
         self.positions = INITIAL_SNAKE_POSITION
         self.direction = RIGHT
         self.next_direction = None
-        super().__init__(position=position,
-                         color=SNAKE_COLOR, body_color=SNAKE_COLOR)
+        super().__init__(position=position, color=SNAKE_COLOR, body_color=SNAKE_COLOR)
 
     def update_direction(self):
         """Обновление направления змейки на основе следующего направления."""
@@ -107,12 +104,12 @@ class Snake(GameObject):
             (head_x + self.direction[0] * GRID_SIZE) % SCREEN_WIDTH,
             (head_y + self.direction[1] * GRID_SIZE) % SCREEN_HEIGHT
         )
-        self.positions = [new_head] + self.positions
+        self.positions = [new_head] + self.positions  # Обновляем позицию головы
         self.positions.pop()  # Убираем последний сегмент
 
     def grow(self):
         """Увеличение змейки за счет добавления сегмента к её хвосту."""
-        self.positions.append(self.positions[-1])
+        self.positions.append(self.positions[-1])  # Добавляем новый сегмент на место хвоста
 
     def draw(self, screen):
         """Отображение змейки на экране."""
