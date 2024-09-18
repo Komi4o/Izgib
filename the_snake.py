@@ -66,6 +66,7 @@ class Apple(GameObject):
             self.randomize_position(snake_positions)
         """Изменение позиции яблока."""
     def randomize_position(self, snake_positions):
+        """Изменение позиции яблока."""
         while True:
             position = (
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
